@@ -1,0 +1,43 @@
+﻿@model FolderExplorer.Models.FolderViewModel
+
+@{
+    ViewData["Title"] = "Folders";
+}
+
+<h1>@Model.Folder.Name</h1>
+
+<p>
+    <a asp-action="Create" asp-route-parentId="@Model.Folder.Id">Create New</a>
+    <a asp-action="ExportFolder" asp-route-id="@Model.Folder.Id">Export This</a>
+    <a asp-action="ImportFolder" asp-route-parentId="@Model.Folder.Id">Import Here</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Subfolders
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Subfolders) {
+        <tr>
+            <td>
+                <a asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Rename</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}       
+    </tbody>
+</table>
+
+@if (Model.Folder.Id != 1)
+{
+    <form asp-action="Back" asp-route-id="@Model.Folder.ParentId">
+        <input type="submit" value="Back" class="btn btn-primary" />
+    </form>
+}   

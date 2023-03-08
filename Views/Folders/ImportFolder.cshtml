@@ -1,0 +1,22 @@
+﻿@model FolderExplorer.Models.Folder;
+@{
+    ViewData["Title"] = "ImportFolder";
+}
+
+<div class="text-center">
+        <h1 class="display-4">Import Folder</h1>
+    </div>
+    <div class="container">
+        <div class="mb-3 mt-3">
+            <form asp-action="ImportFolder" enctype="multipart/form-data" method="post">
+            <div class="mb3">
+                    <label class="form-label">Upload File</label>
+                    <input type="file" name="file" class="form-control"/>
+                    <input type="hidden" asp-for="ParentId" value="@Model.ParentId" />
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
